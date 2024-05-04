@@ -1,0 +1,37 @@
+<mat-dialog-content>
+  <p>Crete To-Do Task</p>
+  <form [formGroup]="todoForm">
+    <div class="">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+    </div>
+   <div class="">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
+    </mat-form-field>
+   </div>
+   <div class="">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+   </div>
+   <div class="">
+     <label for="input-file-id" class="md-button md-raised md-primary">Attachments</label>
+     <input class="ng-hide" id="input-file-id" multiple type="file"  formControlName="attachment"/>
+  </div>
+  </form>
+  
+ 
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button>Close</button>
+  <button mat-button *ngIf="!data || data===null" cdkFocusInitial (click)="submit()">Submit</button>
+  <button *ngIf="data && data.dataKey" mat-button cdkFocusInitial (click)="update()">Update</button>
+</mat-dialog-actions>
